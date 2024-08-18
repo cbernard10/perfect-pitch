@@ -79,7 +79,7 @@ export default function Home() {
   useEffect(() => {}, []);
 
   return (
-    <main className="bg-teal-300 flex flex-col items-center justify-center h-screen gap-12 w-screen pt-24">
+    <main className="bg-neutral-100 flex flex-col items-center justify-center h-screen gap-12 w-screen pt-24">
       <div className="flex flex-row min-w-48 text-black gap-2">
         {["C", "D", "E", "F"].map((note) => (
           <Button

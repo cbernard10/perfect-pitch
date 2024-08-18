@@ -14,7 +14,7 @@ export default function Button(props) {
 
   return (
     <button
-      className="hover:text-white text-6xl border-2 border-transparent hover:border-black hover:bg-rose-800 w-36 h-48"
+      className="hover:text-white text-6xl border-2 border-transparent hover:border-black hover:bg-rose-600 w-36 h-48"
       onClick={() => {
         props.handleClick(props.name);
       }}
