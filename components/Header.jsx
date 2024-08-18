@@ -2,11 +2,13 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="w-full bg-black py-16 px-48 text-4xl tracking-tightest leading-tight font-light flex flex-row justify-around">
-      <span className="drop-shadow-glowCyan">絶</span>
-      <span className="drop-shadow-glowCyan">対</span>
-      <span className="drop-shadow-glowCyan">音</span>
-      <span className="drop-shadow-glowCyan">感</span>
+    <div className="absolute w-full bg-rose-700 py-12 px-48 text-7xl tracking-tightest leading-tight font-extrabold flex flex-row justify-around text-white
+        border-b-8 border-b-rose-800
+    ">
+      <span>絶</span>
+      <span>対</span>
+      <span>音</span>
+      <span>感</span>
     </div>
   );
 }

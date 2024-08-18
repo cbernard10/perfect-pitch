@@ -79,9 +79,8 @@ export default function Home() {
   useEffect(() => {}, []);
 
   return (
-    <main className="bg-gradient-to-t to-neutral-950 from-black from-[95%] flex flex-col items-center justify-center h-screen gap-36 w-screen">
-      {/* <div>Note to guess: {noteToGuess}</div> */}
-      <div className="flex flex-row min-w-48 text-white gap-36">
+    <main className="bg-teal-300 flex flex-col items-center justify-center h-screen gap-12 w-screen pt-24">
+      <div className="flex flex-row min-w-48 text-black gap-2">
         {["C", "D", "E", "F"].map((note) => (
           <Button
             name={note}
@@ -91,7 +90,7 @@ export default function Home() {
           />
         ))}
       </div>      
-      <div className="flex flex-row min-w-48 text-white gap-36">
+      <div className="flex flex-row min-w-48 text-black gap-2">
         {["G", "A", "B"].map((note) => (
           <Button
             name={note}

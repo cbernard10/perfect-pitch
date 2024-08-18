@@ -14,14 +14,12 @@ export default function Button(props) {
 
   return (
     <button
-      className="rounded-md h-24 hover:text-pink-100 text-6xl hover:drop-shadow-glow w-full"
+      className="hover:text-white text-6xl border-2 border-transparent hover:border-black hover:bg-rose-800 w-36 h-48"
       onClick={() => {
         props.handleClick(props.name);
       }}
     >
-      <span className="text-center">
-        {dict[props.name]}
-      </span>
+      <span className="text-center">{dict[props.name]}</span>
     </button>
   );
 }
