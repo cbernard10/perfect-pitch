@@ -3,7 +3,7 @@
 export default function ReplayButton(props) {
   return (
     <button
-      className="p-8 border-2 border-transparent hover:border-blue-800 hover:bg-blue-400 group rounded-full"
+      className="p-8 border-4 border-transparent hover:border-blue-400 hover:bg-blue-200 group rounded-full"
       onClick={() => {
         props.handleReplay();
       }}

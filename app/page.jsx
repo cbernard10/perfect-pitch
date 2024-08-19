@@ -16,7 +16,8 @@ export default function Home() {
   const [message2, setMessage2] = useState("");
   const [score, setScore] = useState(0);
   const [total, setTotal] = useState(0);
-  const [lang, setLang] = useState("fr");
+  const [lang, setLang] = useState("jp");
+  const [started, setStarted] = useState(false);
 
   const notes = [
     "C",
@@ -81,6 +82,7 @@ export default function Home() {
     });
     snd.play();
     setNoteToGuess(newNote);
+    setStarted(true);
   };
 
   const handleSwitchLang = () => {
@@ -139,6 +141,7 @@ export default function Home() {
               noteToGuess={noteToGuess}
               handleClick={(note) => handleCheckAnswer(note)}
               lang={lang}
+              started={started}
             />
           ))}
         </div>

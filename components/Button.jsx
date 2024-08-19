@@ -37,12 +37,14 @@ export default function Button(props) {
       className="hover:text-white rounded-xl text-6xl p-6 border-4 hover:border-blue-800 hover:bg-blue-600 w-36 h-48 flex flex-col items-center justify-center
       active:scale-95 transition-all duration-75 border-neutral-200"
       onClick={() => {
-        props.handleClick(props.name);
+        props.started ? props.handleClick(props.name) : null;
       }}
     >
       {props.lang === "jp" ? (
         dict[props.name].length === 1 ? (
-          <span className="text-center text-4xl h-full items-end flex flex-col justify-end p-4">{dict[props.name]}</span>
+          <span className="text-center text-4xl h-full items-end flex flex-col justify-end p-4">
+            {dict[props.name]}
+          </span>
         ) : (
           <div className="text-center text-4xl flex flex-col items-end justify-end h-full p-4">
             <span>{dict[props.name][0]}</span>
@@ -50,7 +52,9 @@ export default function Button(props) {
           </div>
         )
       ) : (
-        <span className="text-center text-4xl flex flex-col items-end justify-end h-full py-4">{dictFr[props.name]}</span>
+        <span className="text-center text-4xl flex flex-col items-end justify-end h-full py-4">
+          {dictFr[props.name]}
+        </span>
       )}
     </button>
   );
