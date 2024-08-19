@@ -21,16 +21,17 @@ import {
 export function TotalScoreChart({
   score,
   total,
-}: Readonly<{ score: number; total: number }>) {
+  lang,
+}: Readonly<{ score: number; total: number; lang: string }>) {
   const chartData = [{ month: "january", right: score, wrong: total - score }];
 
   const chartConfig = {
     right: {
-      label: "正しい",
+      label: lang === "jp" ? "正しい" : "correct",
       color: "hsl(var(--chart-1))",
     },
     wrong: {
-      label: "間違い",
+      label: lang === "jp" ? "間違った" : "incorrect",
       color: "hsl(var(--chart-2))",
     },
   } satisfies ChartConfig;
@@ -63,14 +64,15 @@ export function TotalScoreChart({
                           y={(viewBox.cy || 0) - 16}
                           className="fill-foreground text-xl font-bold font-mono"
                         >
-                          {total !== 0 ? (100 * score / total).toFixed(2) : 0}%
+                          {total !== 0 ? ((100 * score) / total).toFixed(2) : 0}
+                          %
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 4}
                           className="fill-muted-foreground"
                         >
-                          正確度
+                          {lang === "jp" ? "正確度" : "Précision"}
                         </tspan>
                       </text>
                     );

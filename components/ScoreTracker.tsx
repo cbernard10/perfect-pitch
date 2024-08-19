@@ -18,7 +18,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const chartConfig = {
+const chartConfigJp = {
   accuracy: {
     label: "正確度",
   },
@@ -72,22 +72,66 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const dict = {
-  C: "ハ",
-  Db: "嬰ハ",
-  D: "ニ",
-  Eb: "嬰ニ",
-  E: "ホ",
-  F: "ヘ",
-  Gb: "嬰ヘ",
-  G: "ト",
-  Ab: "嬰ト",
-  A: "イ",
-  Bb: "嬰イ",
-  B: "ロ",
-};
+const chartConfigFr = {
+  accuracy: {
+    label: "Précision",
+  },
+  C: {
+    label: "Do",
+    color: "#77f",
+  },
+  Db: {
+    label: "Do#",
+    color: "#22e",
+  },
+  D: {
+    label: "Ré",
+    color: "#77f",
+  },
+  Eb: {
+    label: "Ré#",
+    color: "#22e",
+  },
+  E: {
+    label: "Mi",
+    color: "#77f",
+  },
+  F: {
+    label: "Fa",
+    color: "#77f",
+  },
+  Gb: {
+    label: "Fa#",
+    color: "#22e",
+  },
+  G: {
+    label: "Sol",
+    color: "#77f",
+  },
+  Ab: {
+    label: "Sol#",
+    color: "#22e",
+  },
+  A: {
+    label: "La",
+    color: "#77f",
+  },
+  Bb: {
+    label: "La#",
+    color: "#22e",
+  },
+  B: {
+    label: "Si",
+    color: "#77f",
+  },
+} satisfies ChartConfig;
 
-export function ScoreTracker(props: { scores: number[]; totals: number[] }) {
+export function ScoreTracker(props: {
+  scores: number[];
+  totals: number[];
+  lang: string;
+}) {
+  const chartConfig = props.lang === "jp" ? chartConfigJp : chartConfigFr;
   const chartData = Object.keys(chartConfig)
     .slice(1)
     .map((key, index) => {
@@ -101,8 +145,6 @@ export function ScoreTracker(props: { scores: number[]; totals: number[] }) {
         fill: chartConfig[key as keyof ChartConfig].color,
       };
     });
-
-  console.log(chartData);
 
   return (
     <Card className="bg-transparent border-0 shadow-none">

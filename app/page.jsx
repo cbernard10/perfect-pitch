@@ -16,6 +16,7 @@ export default function Home() {
   const [message2, setMessage2] = useState("");
   const [score, setScore] = useState(0);
   const [total, setTotal] = useState(0);
+  const [lang, setLang] = useState("fr");
 
   const notes = [
     "C",
@@ -79,14 +80,18 @@ export default function Home() {
       interrupt: true,
     });
     snd.play();
-    console.log(newNote);
     setNoteToGuess(newNote);
   };
 
-  const handleCheckAnswer = (note) => {
-    console.log(note);
-    console.log(noteToGuess);
+  const handleSwitchLang = () => {
+    if (lang === "fr") {
+      setLang("jp");
+    } else {
+      setLang("fr");
+    }
+  };
 
+  const handleCheckAnswer = (note) => {
     if (note === noteToGuess) {
       setMessage2("Correct!");
 
@@ -110,7 +115,6 @@ export default function Home() {
     }
 
     const newNote = pickRandomNote();
-    // console.log("new note:", newNote);
 
     let snd = new Howl({
       src: [`/sounds/${newNote}4.mp3`],
@@ -123,19 +127,18 @@ export default function Home() {
     setNoteToGuess(newNote);
   };
 
-  useEffect(() => {}, []);
-
   return (
     <main className="flex flex-col items-center justify-center h-full">
-      <Header />
+      <Header handleSwitchLang={handleSwitchLang} lang={lang} />
       <div className="flex flex-col items-center gap-12 w-screen pt-16 justify-center">
-        <div className="grid grid-cols-6 text-black gap-2 font-extrabold">
+        <div className="grid grid-cols-6 text-black gap-2 font-bold">
           {notes.map((note) => (
             <Button
               name={note}
               key={note}
               noteToGuess={noteToGuess}
               handleClick={(note) => handleCheckAnswer(note)}
+              lang={lang}
             />
           ))}
         </div>
@@ -151,8 +154,8 @@ export default function Home() {
         <span>{message}</span>
       </div>
       <div className="flex flex-row w-full justify-center gap-16 p-6">
-        <ScoreTracker scores={scores} totals={totals} dict={dict} />
-        <TotalScoreChart score={score} total={total} />
+        <ScoreTracker scores={scores} totals={totals} dict={dict} lang={lang} />
+        <TotalScoreChart score={score} total={total} lang={lang} />
       </div>
     </main>
   );
