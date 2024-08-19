@@ -61,7 +61,7 @@ export function TotalScoreChart({
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) - 16}
-                          className="fill-foreground text-xl font-bold"
+                          className="fill-foreground text-xl font-bold font-mono"
                         >
                           {total !== 0 ? (100 * score / total).toFixed(2) : 0}%
                         </tspan>
