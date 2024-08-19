@@ -5,16 +5,49 @@ import { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
 import StartButton from "../components/StartButton";
 import ReplayButton from "../components/ReplayButton";
+import { ScoreTracker } from "../components/ScoreTracker";
 import { Howl, Howler } from "howler";
+import { TotalScoreChart } from "@/components/TotalScoreChart";
 
 export default function Home() {
   const [noteToGuess, setNoteToGuess] = useState(null);
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
-  const [score, setScore] = useState(0)
-  const [total, setTotal] = useState(0)
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
 
-  const notes = ["C", "D", "E", "F", "G", "A", "B"];
+  const notes = [
+    "C",
+    "Db",
+    "D",
+    "Eb",
+    "E",
+    "F",
+    "Gb",
+    "G",
+    "Ab",
+    "A",
+    "Bb",
+    "B",
+  ];
+
+  const dict = {
+    C: "ハ",
+    Db: "嬰ハ",
+    D: "ニ",
+    Eb: "嬰ニ",
+    E: "ホ",
+    F: "ヘ",
+    Gb: "嬰ヘ",
+    G: "ト",
+    Ab: "嬰ト",
+    A: "イ",
+    Bb: "嬰イ",
+    B: "ロ",
+  };
+
+  const [scores, setScores] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [totals, setTotals] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
   const pickRandomNote = () => {
     let randomIndex = Math.floor(Math.random() * notes.length);
@@ -34,7 +67,7 @@ export default function Home() {
       interrupt: true,
     });
     snd.play();
-  }
+  };
 
   const handleStart = () => {
     const newNote = pickRandomNote();
@@ -55,11 +88,24 @@ export default function Home() {
 
     if (note === noteToGuess) {
       setMessage2("Correct!");
+
       setScore(score + 1);
       setTotal(total + 1);
+
+      const newScores = [...scores];
+      newScores[notes.indexOf(noteToGuess)] += 1;
+      setScores(newScores);
+
+      const newTotals = [...totals];
+      newTotals[notes.indexOf(noteToGuess)] += 1;
+      setTotals(newTotals);
     } else {
       setMessage2("Try again!");
       setTotal(total + 1);
+
+      const newTotals = [...totals];
+      newTotals[notes.indexOf(noteToGuess)] += 1;
+      setTotals(newTotals);
     }
 
     const newNote = pickRandomNote();
@@ -79,36 +125,33 @@ export default function Home() {
   useEffect(() => {}, []);
 
   return (
-    <main className="bg-neutral-100 flex flex-col items-center justify-center h-screen gap-12 w-screen pt-24">
-      <div className="flex flex-row min-w-48 text-black gap-2">
-        {["C", "D", "E", "F"].map((note) => (
-          <Button
-            name={note}
-            key={note}
+    <main className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center gap-12 w-screen pt-16 justify-center">
+        <div className="grid grid-cols-6 text-black gap-2 font-extrabold">
+          {notes.map((note) => (
+            <Button
+              name={note}
+              key={note}
+              noteToGuess={noteToGuess}
+              handleClick={(note) => handleCheckAnswer(note)}
+            />
+          ))}
+        </div>
+        {noteToGuess === null ? (
+          <StartButton
+            name={"Start"}
+            handleClick={handleStart}
             noteToGuess={noteToGuess}
-            handleClick={(note) => handleCheckAnswer(note)}
           />
-        ))}
-      </div>      
-      <div className="flex flex-row min-w-48 text-black gap-2">
-        {["G", "A", "B"].map((note) => (
-          <Button
-            name={note}
-            key={note}
-            noteToGuess={noteToGuess}
-            handleClick={(note) => handleCheckAnswer(note)}
-          />
-        ))}
+        ) : (
+          <ReplayButton handleReplay={handleReplay} />
+        )}
+        <span>{message}</span>
       </div>
-      {noteToGuess === null ? (
-        <StartButton
-          name={"Start"}
-          handleClick={handleStart}
-          noteToGuess={noteToGuess}
-        />
-      ) : <ReplayButton handleReplay={handleReplay} />}
-      <span>{message}</span>
-      <span className="font-mono">score: {score}/{total} | accuracy = {(100 * score/total).toFixed(2)}%</span>
+      <div className="flex flex-row w-full justify-center gap-16 p-6">
+        <ScoreTracker scores={scores} totals={totals} dict={dict} />
+        <TotalScoreChart score={score} total={total} />
+      </div>
     </main>
   );
 }

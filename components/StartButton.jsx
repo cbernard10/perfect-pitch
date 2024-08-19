@@ -3,7 +3,7 @@
 export default function StartButton(props) {
   return (
     <button
-      className="p-8 border-2 border-transparent hover:border-black hover:bg-green-400 hover:bg-rose-400 group rounded-full"
+      className="p-8 border-2 border-transparent hover:border-black hover:bg-blue-400 group rounded-full"
       onClick={() => {
         props.handleClick();
       }}
