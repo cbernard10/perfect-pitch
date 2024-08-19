@@ -8,6 +8,7 @@ import ReplayButton from "../components/ReplayButton";
 import { ScoreTracker } from "../components/ScoreTracker";
 import { Howl, Howler } from "howler";
 import { TotalScoreChart } from "@/components/TotalScoreChart";
+import Header from "@/components/Header";
 
 export default function Home() {
   const [noteToGuess, setNoteToGuess] = useState(null);
@@ -126,6 +127,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center h-full">
+      <Header />
       <div className="flex flex-col items-center gap-12 w-screen pt-16 justify-center">
         <div className="grid grid-cols-6 text-black gap-2 font-extrabold">
           {notes.map((note) => (

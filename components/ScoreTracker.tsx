@@ -97,7 +97,8 @@ export function ScoreTracker(props: { scores: number[]; totals: number[] }) {
           props.totals[index] === 0
             ? 0
             : props.scores[index] / props.totals[index],
-        fill: chartConfig[key].color,
+        // @ts-ignore
+        fill: chartConfig[key as keyof ChartConfig].color,
       };
     });
 
@@ -106,7 +107,10 @@ export function ScoreTracker(props: { scores: number[]; totals: number[] }) {
   return (
     <Card className="bg-transparent border-0 shadow-none">
       <CardContent className="bg-transparent">
-        <ChartContainer config={chartConfig} className="w-[500px] bg-transparent">
+        <ChartContainer
+          config={chartConfig}
+          className="w-[500px] bg-transparent"
+        >
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
