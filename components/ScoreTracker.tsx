@@ -44,31 +44,31 @@ const chartConfig = {
   },
   F: {
     label: "ヘ",
-    color: "#22e",
+    color: "#77f",
   },
   Gb: {
     label: "嬰ヘ",
-    color: "#77f",
+    color: "#22e",
   },
   G: {
     label: "ト",
-    color: "#22e",
+    color: "#77f",
   },
   Ab: {
     label: "嬰ト",
-    color: "#77f",
+    color: "#22e",
   },
   A: {
     label: "イ",
-    color: "#22e",
+    color: "#77f",
   },
   Bb: {
     label: "嬰イ",
-    color: "#77f",
+    color: "#22e",
   },
   B: {
     label: "ロ",
-    color: "#22e",
+    color: "#77f",
   },
 } satisfies ChartConfig;
 

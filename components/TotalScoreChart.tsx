@@ -80,7 +80,7 @@ export function TotalScoreChart({
             </PolarRadiusAxis>
             <RadialBar
               dataKey="wrong"
-              fill="#f33"
+              fill="#ddf"
               stackId="a"
               cornerRadius={3}
               className="stroke-transparent stroke-2"
@@ -89,7 +89,7 @@ export function TotalScoreChart({
               dataKey="right"
               stackId="a"
               cornerRadius={3}
-              fill="#88f"
+              fill="#22f"
               className="stroke-transparent stroke-2"
             />
           </RadialBarChart>
